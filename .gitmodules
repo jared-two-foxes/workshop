@@ -8,5 +8,5 @@
 	path = modules/framework
 	url = https://github.com/jared-two-foxes/framework.git
 [submodule "allocate"]
-	path = allocate
+	path = modules/allocate
 	url = https://github.com/jared-two-foxes/allocate.git
