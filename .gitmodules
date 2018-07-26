@@ -7,3 +7,6 @@
 [submodule "modules/framework"]
 	path = modules/framework
 	url = https://github.com/jared-two-foxes/framework.git
+[submodule "allocate"]
+	path = allocate
+	url = https://github.com/jared-two-foxes/allocate.git
