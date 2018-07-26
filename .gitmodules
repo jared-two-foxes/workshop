@@ -1,12 +1,12 @@
 [submodule "modules/libzmq"]
-	path = modules/libzmq
+	path = libzmq/repo
 	url = https://github.com/zeromq/libzmq.git
 [submodule "modules/zmqcpp"]
-	path = modules/zmqcpp
+	path = cppzmq/repo
 	url = https://github.com/zeromq/cppzmq.git
 [submodule "modules/framework"]
-	path = modules/framework
+	path = framework/repo
 	url = https://github.com/jared-two-foxes/framework.git
 [submodule "allocate"]
-	path = modules/allocate
+	path = allocate/repo
 	url = https://github.com/jared-two-foxes/allocate.git
