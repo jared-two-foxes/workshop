@@ -3,23 +3,23 @@ cxx_library(
   name = 'allocate_lib',
   header_namespace = 'allocate',
   exported_headers = subdir_glob([
-    ('include', '**/*.hpp'),
+    ('repo/include', '**/*.hpp'),
   ]),
   srcs = glob([
-    'source/*.cpp'
+    'repo/source/*.cpp'
   ]),
   platform_compiler_flags = [
     ('.x86_64$', {'/EHsc'}),
   ],
   deps = [
-    '//build/framework:framework',
+    '//framework:framework',
   ]
 )
 
 cxx_binary(
   name = 'allocate',
   srcs = glob([
-    'app/*.cpp',
+    'repo/app/*.cpp',
   ]),
   linker_flags = [
     '-lpthread',
@@ -34,14 +34,11 @@ cxx_binary(
 
 cxx_binary(
   name = 'test',
-  headers = subdir_glob([
-    ('include', '**/*.hpp'),
-  ]),
   srcs = glob([
-    'test/*.cpp',
+    'repo/test/*.cpp',
   ]),
   deps = [
     ':allocate',
-    '//build/Catch2:Catch2'
+    '//Catch2:Catch2'
   ],
 )
