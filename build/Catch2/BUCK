@@ -1,0 +1,11 @@
+
+prebuilt_cxx_library(
+  name = 'Catch2',
+  header_only = True,
+  header_dirs = [
+    'Catch2/include'
+  ],
+  visibility = [
+    'PUBLIC',
+  ],
+)
