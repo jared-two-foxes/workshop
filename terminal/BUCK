@@ -1,6 +1,5 @@
 cxx_library(
-  name = 'framework',
-  #header_namespace = 'framework',
+  name = 'terminal',
   srcs = glob([
     'repo/src/**/*.cpp',
   ]),
@@ -14,9 +13,6 @@ cxx_library(
   ]),
   exported_platform_preprocessor_flags = [
     ('.x86_64$', {'/DWIN32', '/D_WIN32', '/D_WINDOWS'}),
-  ],
-  exported_deps = [
-    '//cppzmq:cppzmq'
   ],
   visibility = [
     'PUBLIC'

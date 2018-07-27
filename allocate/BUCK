@@ -12,6 +12,7 @@ cxx_library(
     ('.x86_64$', {'/EHsc'}),
   ],
   deps = [
+    '//terminal:terminal',
     '//framework:framework',
   ]
 )
