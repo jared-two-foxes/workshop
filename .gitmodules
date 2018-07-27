@@ -13,3 +13,6 @@
 [submodule "terminal/repo"]
 	path = terminal/repo
 	url = https://github.com/jared-two-foxes/terminal.git
+[submodule "foundation/repo"]
+	path = foundation/repo
+	url = https://github.com/jared-two-foxes/foundation.git
