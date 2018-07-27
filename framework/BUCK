@@ -16,6 +16,7 @@ cxx_library(
     ('.x86_64$', {'/DWIN32', '/D_WIN32', '/D_WINDOWS'}),
   ],
   exported_deps = [
+    '//foundation:foundation',
     '//cppzmq:cppzmq'
   ],
   visibility = [

@@ -14,6 +14,9 @@ cxx_library(
   exported_platform_preprocessor_flags = [
     ('.x86_64$', {'/DWIN32', '/D_WIN32', '/D_WINDOWS'}),
   ],
+  exported_deps = [
+    '//foundation:foundation'
+  ],
   visibility = [
     'PUBLIC'
   ]
