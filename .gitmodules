@@ -10,3 +10,6 @@
 [submodule "allocate"]
 	path = allocate/repo
 	url = https://github.com/jared-two-foxes/allocate.git
+[submodule "terminal/repo"]
+	path = terminal/repo
+	url = https://github.com/jared-two-foxes/terminal.git
