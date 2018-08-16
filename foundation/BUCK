@@ -1,9 +1,15 @@
-prebuilt_cxx_library(
+
+cxx_library(
   name = 'foundation',
-  header_only = True,
-  exported_headers  = subdir_glob([     # public include files
-    ('repo/include', '**/*.hpp'),       # those will be exported,
+  exported_headers = subdir_glob([
+    ('repo/include', '**/*.hpp'),
   ]),
+  srcs = glob([
+    'repo/source/*.cpp'
+  ]),
+  platform_compiler_flags = [
+    ('.x86_64$', {'/EHsc'}),
+  ],
   visibility = [
     'PUBLIC',
   ]
