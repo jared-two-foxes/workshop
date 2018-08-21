@@ -16,3 +16,6 @@
 [submodule "foundation/repo"]
 	path = foundation/repo
 	url = https://github.com/jared-two-foxes/foundation.git
+[submodule "SQLiteCpp/repo"]
+	path = SQLiteCpp/repo
+	url = https://github.com/SRombauts/SQLiteCpp.git
