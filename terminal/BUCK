@@ -11,12 +11,6 @@ cxx_library(
     ('repo/include', '**/*.h'),            # those will be exported
     ('repo/include', '**/*.hpp'),          # and accessible via <framework/header.h>
   ]),
-  exported_platform_preprocessor_flags = [
-    ('.x86_64$', {'/DWIN32', '/D_WIN32', '/D_WINDOWS'}),
-  ],
-  platform_compiler_flags = [
-    ('.x86_64$', {'/EHsc'}),
-  ],  
   exported_deps = [
     '//foundation:foundation'
   ],

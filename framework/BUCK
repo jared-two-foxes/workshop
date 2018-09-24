@@ -4,23 +4,18 @@ cxx_library(
   srcs = glob([
     'repo/src/**/*.cpp',
   ]),
-  headers = subdir_glob([                  # private include files
-    ('repo/detail', '**/*.h'),             # they are only accessible inside the library
+  headers = subdir_glob([                 
+    ('repo/detail', '**/*.h'),            
     ('repo/detail', '**/*.hpp'),
   ]),
-  exported_headers = subdir_glob([         # public include files
-    ('repo/include', '**/*.h'),            # those will be exported
-    ('repo/include', '**/*.hpp'),          # and accessible via <framework/header.h>
+  exported_headers = subdir_glob([
+    ('repo/include', '**/*.h'),  
+    ('repo/include', '**/*.hpp'),
   ]),
-  exported_platform_preprocessor_flags = [
-    ('.x86_64$', {'/DWIN32', '/D_WIN32', '/D_WINDOWS'}),
-  ],
-  platform_compiler_flags = [
-    ('.x86_64$', {'/EHsc'}),
-  ],
   exported_deps = [
     '//foundation:foundation',
-    '//cppzmq:cppzmq'
+    '//cppzmq:cppzmq',
+    '//libzmq:libzmq'
   ],
   visibility = [
     'PUBLIC'

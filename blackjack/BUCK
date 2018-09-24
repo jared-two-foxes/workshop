@@ -1,0 +1,57 @@
+cxx_library(
+  name = 'blackjack_lib',
+  header_namespace = 'blackjack',
+  srcs = glob([
+    'repo/src/**/*.cpp',
+  ]),
+  headers = subdir_glob([
+    ('repo/detail', '**/*.h'),
+    ('repo/detail', '**/*.hpp'),
+  ]),
+  exported_headers = subdir_glob([
+    ('repo/include', '**/*.h'),
+    ('repo/include', '**/*.hpp'),
+  ]),
+  compiler_flags = [
+    '/EHsc',
+  ],
+  exported_deps = ['//foundation:foundation'],
+  visibility = ['PUBLIC']
+)
+
+cxx_binary(
+  name = 'server',
+  srcs = glob([
+    'repo/apps/ServerApplication.cpp',
+    'repo/apps/server.cpp',
+  ]),
+  headers = subdir_glob([
+    ('repo/apps', 'ServerApplication.hpp'),
+    ('repo/apps/shared', '**/*.hpp'),
+  ]),
+  deps = [
+    '//terminal:terminal', 
+    '//framework:framework', 
+    ':blackjack_lib',
+    '//cpp-stateless:cpp-stateless',
+  ] ,
+  visibility = ['PUBLIC']
+)
+
+cxx_binary(
+  name = 'client',
+  srcs = glob([
+    'repo/apps/ClientApplication.cpp',
+    'repo/apps/client.cpp',
+  ]),
+  headers = subdir_glob([ # private include files
+    ('repo/apps', 'ClientApplication.hpp'),
+    ('repo/apps/shared', '**/*.hpp'),
+  ]),
+  deps = [
+    ':blackjack_lib', 
+    '//framework:framework', 
+    '//terminal:terminal'
+  ],
+  visibility = ['PUBLIC']
+)
