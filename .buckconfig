@@ -1,2 +1,3 @@
 [cxx]
   cxxflags = -std=c++17
+  should_remap_host_platform = true
