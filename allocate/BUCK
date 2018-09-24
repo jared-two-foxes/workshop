@@ -8,12 +8,9 @@ cxx_library(
   srcs = glob([
     'repo/source/*.cpp'
   ]),
-  platform_compiler_flags = [
-    ('.x86_64$', {'/EHsc'}),
-  ],
-  deps = [
+  exported_deps = [
     '//terminal:terminal',
-    '//framework:framework',
+    '//foundation:foundation',
     '//SQLiteCpp:SQLiteCpp',
   ]
 )
@@ -23,9 +20,6 @@ cxx_binary(
   srcs = glob([
     'repo/app/*.cpp',
   ]),
-  platform_compiler_flags = [
-    ('.x86_64$', {'/EHsc'})
-  ],
   deps = [
     ':allocate_lib',
   ],
