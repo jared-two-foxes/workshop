@@ -1,0 +1,39 @@
+
+cxx_library(
+  name = 'schedule_lib',
+  header_namespace = 'schedule',
+  exported_headers = subdir_glob([
+    ('repo/include', '**/*.hpp'),
+  ]),
+  srcs = glob([
+    'repo/source/*.cpp'
+  ]),
+  exported_platform_linker_flags = [
+    ('linux-x86_64', {'-lcurl'})
+  ],
+  exported_deps = [
+    '//terminal:terminal',
+    '//RapidJson:RapidJson'
+  ]
+)
+
+cxx_binary(
+  name = 'schedule',
+  srcs = glob([
+    'repo/app/*.cpp',
+  ]),
+  deps = [
+    ':schedule_lib',
+  ],
+)
+
+cxx_binary(
+  name = 'test',
+  srcs = glob([
+    'repo/test/*.cpp',
+  ]),
+  deps = [
+    ':schedule',
+    '//Catch2:Catch2'
+  ],
+)
