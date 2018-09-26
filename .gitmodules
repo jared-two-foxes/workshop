@@ -19,3 +19,7 @@
 [submodule "RapidJson/repo"]
 	path = RapidJson/repo
 	url = https://github.com/Tencent/rapidjson.git
+[submodule "allocate/repo"]
+	path = allocate/repo
+	url = https://github.com/jared-two-foxes/allocate.git
+	branch = master
