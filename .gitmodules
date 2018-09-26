@@ -16,9 +16,6 @@
 [submodule "SQLiteCpp/repo"]
 	path = SQLiteCpp/repo
 	url = https://github.com/SRombauts/SQLiteCpp.git
-[submodule "allocate/schedule/repo"]
-	path = allocate/schedule/repo
-	url = https://github.com/jared-two-foxes/schedule.git
 [submodule "RapidJson/repo"]
 	path = RapidJson/repo
 	url = https://github.com/Tencent/rapidjson.git
