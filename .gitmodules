@@ -1,18 +1,23 @@
 [submodule "modules/libzmq"]
 	path = libzmq/repo
 	url = https://github.com/zeromq/libzmq.git
+	branch = master
 [submodule "modules/zmqcpp"]
 	path = cppzmq/repo
 	url = https://github.com/zeromq/cppzmq.git
+	branch = master
 [submodule "modules/framework"]
 	path = framework/repo
 	url = https://github.com/jared-two-foxes/framework.git
+	branch = master
 [submodule "terminal/repo"]
 	path = terminal/repo
 	url = https://github.com/jared-two-foxes/terminal.git
+	branch = master
 [submodule "foundation/repo"]
 	path = foundation/repo
 	url = https://github.com/jared-two-foxes/foundation.git
+	branch = master
 [submodule "SQLiteCpp/repo"]
 	path = SQLiteCpp/repo
 	url = https://github.com/SRombauts/SQLiteCpp.git
