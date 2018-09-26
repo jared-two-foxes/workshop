@@ -1,0 +1,12 @@
+prebuilt_cxx_library(
+  name = 'RapidJson',
+  header_only = True,
+  header_namespace = '',
+  exported_headers  = subdir_glob([
+    ('repo/include', '**/*.hpp'),
+    ('repo/include', '**/*.h'),
+  ]),
+  visibility = [
+    'PUBLIC',
+  ]
+)

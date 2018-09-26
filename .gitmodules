@@ -22,3 +22,6 @@
 [submodule "allocate/schedule/repo"]
 	path = allocate/schedule/repo
 	url = https://github.com/jared-two-foxes/schedule.git
+[submodule "RapidJson/repo"]
+	path = RapidJson/repo
+	url = https://github.com/Tencent/rapidjson.git
