@@ -23,3 +23,7 @@
 	path = allocate/repo
 	url = https://github.com/jared-two-foxes/allocate.git
 	branch = master
+[submodule "schedule/repo"]
+	path = schedule/repo
+	url = https://github.com/jared-two-foxes/schedule.git
+	branch = master
