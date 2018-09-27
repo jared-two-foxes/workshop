@@ -1,0 +1,10 @@
+Init model.
+Adding main application listener.
+Listener added.
+Action: refreshAccounts.
+RefreshAccounts reducer
+onStateChanged callback.
+renderSingleFrame
+Starting main loop.
+Received Command: quit
+Quiting...

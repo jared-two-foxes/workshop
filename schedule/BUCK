@@ -33,7 +33,7 @@ cxx_binary(
     'repo/test/*.cpp',
   ]),
   deps = [
-    ':schedule',
+    ':schedule_lib',
     '//Catch2:Catch2'
   ],
 )
