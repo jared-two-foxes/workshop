@@ -32,3 +32,7 @@
 	path = schedule/repo
 	url = https://github.com/jared-two-foxes/schedule.git
 	branch = master
+[submodule "libcurl/repo"]
+	path = libcurl/repo
+	url = https://github.com/curl/curl.git
+	branch = master
