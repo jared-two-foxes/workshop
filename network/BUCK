@@ -1,0 +1,22 @@
+cxx_library(
+  name = 'network',
+  srcs = glob([
+    'repo/source/**/*.cpp',
+    'repo/detail/**/*.cpp',
+  ]),
+  headers = subdir_glob([
+    ('repo/detail', '**/*.h'),
+    ('repo/detail', '**/*.hpp'),
+  ]),
+  exported_headers = subdir_glob([
+    ('repo/include', '**/*.h'),
+    ('repo/include', '**/*.hpp'),
+  ]),
+  exported_deps = [
+    '//foundation:foundation',
+    '//libcurl:libcurl'
+  ],
+  visibility = [
+    'PUBLIC'
+  ]
+)

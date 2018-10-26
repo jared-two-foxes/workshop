@@ -6,13 +6,13 @@ cxx_library(
     ('repo/include', '**/*.hpp'),
   ]),
   srcs = glob([
-    'repo/source/*.cpp'
+    'repo/source/*.cpp',
+    'repo/detail/*.hpp',
+    'repo/detail/*.cpp'
   ]),
-  exported_platform_linker_flags = [
-    ('linux-x86_64', {'-lcurl'})
-  ],
   exported_deps = [
     '//terminal:terminal',
+    '//network:network',
     '//RapidJson:RapidJson'
   ]
 )
@@ -25,6 +25,9 @@ cxx_binary(
   deps = [
     ':schedule_lib',
   ],
+  compiler_flags = [
+    '-lcurl'
+  ]
 )
 
 cxx_binary(

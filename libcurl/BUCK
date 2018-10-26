@@ -1,0 +1,15 @@
+prebuilt_cxx_library(
+  name = 'libcurl',
+  header_only = True,
+  header_namespace = '',
+  exported_headers  = subdir_glob([
+    ('repo/include', '**/*.hpp'),
+    ('repo/include', '**/*.h'),
+  ]),
+  exported_linker_flags = [
+    '-lcurl'
+  ],
+  visibility = [
+    'PUBLIC',
+  ]
+)
