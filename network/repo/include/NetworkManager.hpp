@@ -1,8 +1,6 @@
 #ifndef NETWORK_NETWORKMANAGER_HPP__
 #define NETWORK_NETWORKMANAGER_HPP__
 
-#include <foundation/foundation.hpp>
-
 #include <network/Request.hpp>
 #include <network/Response.hpp>
 

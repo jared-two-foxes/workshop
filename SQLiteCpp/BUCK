@@ -8,9 +8,9 @@ cxx_library(
         'repo/sqlite3/*.c',
     ]),
     exported_preprocessor_flags = [
-        '/DSQLITE_ENABLE_COLUMN_METADATA',
-        '/DSQLITE_THREADSAFE=0',
-        '/DSQLITE_OMIT_LOAD_EXTENSION',
+        '-DSQLITE_ENABLE_COLUMN_METADATA',
+        '-DSQLITE_THREADSAFE=0',
+        '-DSQLITE_OMIT_LOAD_EXTENSION',
     ],
 )
 

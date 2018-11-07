@@ -1,8 +1,6 @@
 #ifndef NETWORK_NETWORKREQUEST_HPP__
 #define NETWORK_NETWORKREQUEST_HPP__
 
-#include <foundation/foundation.hpp>
-
 #include <string>
 #include <vector>
 
