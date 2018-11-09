@@ -10,7 +10,7 @@ using foundation::ascii_isgraph;
 #include <foundation/strings/numbers.hpp>
 #include <foundation/strings/stringpiece.hpp>
 
-using namespace network;
+
 
 inline bool EndsWith(string s, const char *x) {
   int l = strlen(x);
@@ -63,6 +63,6 @@ static string EscapeReservedCharacters(const string& from,
   return escaped;
 }
 
-string EscapeForUrl(const string& from) {
+string network::EscapeForUrl(const string& from) {
   return EscapeReservedCharacters(from, NeedsEscaping);
 }
