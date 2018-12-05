@@ -11,12 +11,17 @@ Router* g_router = nullptr;
 void network::init()
 {
     g_router = new CurlRouter();
+    g_router->init();
 }
 
 void network::destroy()
 {
     RouterLocator::provide( nullptr );
-    delete g_router;
+    if (g_router)
+    {
+      g_router->destroy();
+      delete g_router;
+    }
 }
 
 

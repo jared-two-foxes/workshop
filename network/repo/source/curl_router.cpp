@@ -54,7 +54,11 @@ util::Status CurlRouter::perform( Request& request, Response* response )
         chunk = nullptr;
     }
 
-    //assert(res == CURLE_OK);
+    if (res != CURLE_OK)
+    {
+        return network::util::StatusUnknown("Failed to perform operation");
+    }
+
     return network::util::StatusOk();
 }
 
