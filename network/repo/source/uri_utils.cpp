@@ -1,15 +1,15 @@
 
-#include <string>
-using std::string;
-#include <vector>
 
-#include <network/uri_utils.hpp>
+#include <network/transport/uri_utils.hpp>
 #include <foundation/base/macros.hpp>
 #include <foundation/strings/ascii_ctype.hpp>
 using foundation::ascii_isgraph;
 #include <foundation/strings/numbers.hpp>
 #include <foundation/strings/stringpiece.hpp>
 
+#include <string>
+using std::string;
+#include <vector>
 
 
 inline bool EndsWith(string s, const char *x) {
