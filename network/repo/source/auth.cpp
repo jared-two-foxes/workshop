@@ -67,6 +67,7 @@ network::util::Status network::oauth2::requestAuth( oauth2::ClientSpec& spec, st
 
 network::util::Status network::oauth2::confirmAuth( oauth2::ClientSpec& spec, std::string authorization_code, network::Request* request )
 {
+    request->uri_ = spec.token_uri_;
     request->content_ =
         StrCat("code=", EscapeForUrl(authorization_code),
                "&client_id=", EscapeForUrl(spec.client_id_),

@@ -4,6 +4,8 @@
 #include <network/transport/request.hpp>
 #include <network/transport/response.hpp>
 
+#include <iostream>
+
 using namespace network;
 
 size_t WriteCallback( void *contents, size_t size, size_t nmemb, void *userp )
@@ -41,8 +43,15 @@ util::Status CurlRouter::perform( Request& request, Response* response )
 
     struct curl_slist* chunk = setupHeader( request );
     res = curl_easy_setopt( m_curl, CURLOPT_HTTPHEADER, chunk );
+
     std::string url = setupUrlWithParameters( request );
     res = curl_easy_setopt( m_curl, CURLOPT_URL, url.c_str() );
+
+    if (!request.content_.empty()) {
+      std::cout << request.content_ << std::endl;
+      res = curl_easy_setopt( m_curl, CURLOPT_POSTFIELDS, request.content_.c_str() );
+    }
+
     res = curl_easy_setopt( m_curl, CURLOPT_WRITEDATA, response );
     res = curl_easy_setopt( m_curl, CURLOPT_WRITEFUNCTION, WriteCallback );
 
