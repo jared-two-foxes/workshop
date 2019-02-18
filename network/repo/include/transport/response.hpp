@@ -4,12 +4,12 @@
 #include <string>
 
 namespace network {
-  
+
 using std::string;
 
 struct Response
 {
-  string buffer_;
+  string body_;
 };
 
 } // namespace network

@@ -27,19 +27,15 @@ struct Credential
  * A data object containing specifying the client information to present to
  * the OAuth 2.0 server.
  */
-struct ClientSpec
+struct ClientInfo
 {
   string client_id_;
   string client_secret_;
-  string auth_uri_;
-  string redirect_uri_;
-  string revoke_uri_; // ??
-  string token_uri_;
 };
 
-network::util::Status requestAuth( oauth2::ClientSpec& spec, string scopes, Request* request );
+string requestAuth( string auth, oauth2::ClientInfo& spec, std::string redirect, string scopes );
 
-network::util::Status confirmAuth( oauth2::ClientSpec& spec, string authorization_code, Request* credential );
+string confirmAuth( oauth2::ClientInfo& spec, string redirect, string authorization_code );
 
 }  // namespace oauth2
 

@@ -30,50 +30,27 @@ network::util::Status ValidateUserName(const string& name)
   return StatusOk();
 }
 
-network::util::Status network::oauth2::requestAuth( oauth2::ClientSpec& spec, std::string scopes, network::Request* request )
+string network::oauth2::requestAuth( string auth, oauth2::ClientInfo& spec, string redirect, string scopes )
 {
-    std::cout
-        << std::endl
-        << "Welcome to the Google APIs for C++ CalendarSample.\n"
-        << "  You will need to authorize this program to look at your calendar.\n"
-        << "  If you would like to save these credentials between runs\n"
-        << "  (or restore from an earlier run) then enter a Google Email "
-           "Address.\n"
-        << "  Otherwise just press return.\n" << std::endl
-        << "  Address: ";
-    string email;
-    std::getline(std::cin, email);
-    if (!email.empty()) {
-        network::util::Status status = ValidateUserName(email);
-        if (!status.ok()) {
-            return status;
-        }
-    }
+  // I'm going to assume these lines are related to glog
+  // CHECK(!scopes.empty());
+  // CHECK(!client_spec_.client_id().empty()) << "client_id not set";
 
-    // I'm going to assume these lines are related to glog
-    // CHECK(!scopes.empty());
-    // CHECK(!client_spec_.client_id().empty()) << "client_id not set";
-
-    request->uri_ =
-        StrCat(spec.auth_uri_,
-               "?client_id=", EscapeForUrl(spec.client_id_),
-               "&redirect_uri=", EscapeForUrl(spec.redirect_uri_),
-               "&scope=", EscapeForUrl(scopes),
-               "&response_type=code");
-
-    return StatusOk();
+  return
+    StrCat(auth,
+      "?client_id=", EscapeForUrl(spec.client_id_),
+      "&redirect_uri=", EscapeForUrl(redirect),
+      "&scope=", EscapeForUrl(scopes),
+      "&response_type=code");
 }
 
 
-network::util::Status network::oauth2::confirmAuth( oauth2::ClientSpec& spec, std::string authorization_code, network::Request* request )
+string network::oauth2::confirmAuth( oauth2::ClientInfo& spec, string redirect, string authorization_code )
 {
-    request->uri_ = spec.token_uri_;
-    request->content_ =
-        StrCat("code=", EscapeForUrl(authorization_code),
-               "&client_id=", EscapeForUrl(spec.client_id_),
-               "&client_secret=", EscapeForUrl(spec.client_secret_),
-               "&redirect_uri=", EscapeForUrl(spec.redirect_uri_),
-               "&grant_type=authorization_code");
-
-    return StatusOk();
+  return
+    StrCat("code=", authorization_code,
+      "&client_id=", EscapeForUrl(spec.client_id_),
+      "&client_secret=", EscapeForUrl(spec.client_secret_),
+      "&redirect_uri=", EscapeForUrl(redirect),
+      "&grant_type=authorization_code");
 }

@@ -12,7 +12,7 @@ size_t WriteCallback( void *contents, size_t size, size_t nmemb, void *userp )
 {
     std::size_t nb = size * nmemb;
     std::string buffer( (char*)contents, nb );
-    ((Response*)userp)->buffer_.append( buffer );
+    ((Response*)userp)->body_.append( buffer );
     return nb;
 }
 

@@ -14,7 +14,7 @@ struct Request
 {
   string uri_;
   ParameterList options_;
-  ParameterList parameters_;
+  ParameterList parameters_;   //[DEPRECIATED]
   string content_;
 };
 
