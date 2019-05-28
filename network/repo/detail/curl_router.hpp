@@ -19,12 +19,8 @@ public:
 
     void init() override;
     void destroy() override;
-    util::Status perform( Request& request, Response* response ) override;
 
-private:
-    curl_slist* setupHeader( Request& request );
-    std::string setupUrlWithParameters( Request& request );
-    void setupBody( Request& request );
+    util::Status perform( Request const & request, Response* response ) override;
 
 };
 

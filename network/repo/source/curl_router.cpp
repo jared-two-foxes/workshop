@@ -16,18 +16,54 @@ size_t WriteCallback( void *contents, size_t size, size_t nmemb, void *userp )
     return nb;
 }
 
+curl_slist* setupHeader( Request const & request )
+{
+    curl_slist* chunk = nullptr;
+
+    ParameterList options = request.options_;
+    for ( auto pair : options )
+    {
+        std::string option = pair.first + ": " + pair.second;
+        chunk = curl_slist_append( chunk, option.c_str() );
+    }
+
+    return chunk;
+}
+
+
+CURLoption selectRequestMethod( Request const & request ) 
+{
+    switch ( request.method_ )
+    {
+    case HttpMethod::GET:
+        return CURLOPT_HTTPGET;
+    case HttpMethod::POST:
+        return CURLOPT_POST;
+    case HttpMethod::PUT:
+        return CURLOPT_PUT;
+    // case HttpMethod::HEAD:
+    //     return CURLOPT_PUT;
+    default:
+        break;
+    }
+
+    return CURLOPT_HTTPGET;
+}
+
 CurlRouter::CurlRouter()
 {}
 
 CurlRouter::~CurlRouter()
 {}
 
-void CurlRouter::init()
+void 
+CurlRouter::init()
 {
     m_curl = curl_easy_init();
 }
 
-void CurlRouter::destroy()
+void 
+CurlRouter::destroy()
 {
     if ( m_curl )
     {
@@ -37,24 +73,31 @@ void CurlRouter::destroy()
 }
 
 // Should this be a pair, obj & error?
-util::Status CurlRouter::perform( Request& request, Response* response )
+util::Status 
+CurlRouter::perform( Request const & request, Response* response )
 {
     CURLcode res;
 
-    struct curl_slist* chunk = setupHeader( request );
-    res = curl_easy_setopt( m_curl, CURLOPT_HTTPHEADER, chunk );
+    CURLoption option = selectRequestMethod( request );
+    res = curl_easy_setopt( m_curl, option, 1L );
 
-    std::string url = setupUrlWithParameters( request );
-    res = curl_easy_setopt( m_curl, CURLOPT_URL, url.c_str() );
+    struct curl_slist* chunk = setupHeader( request );
+    res = curl_easy_setopt( m_curl, CURLOPT_HTTPHEADER, chunk ); 
 
     if (!request.content_.empty()) {
-      std::cout << request.content_ << std::endl;
-      res = curl_easy_setopt( m_curl, CURLOPT_POSTFIELDS, request.content_.c_str() );
+        //@todo: Maybe we should assert here that post is selected?
+        std::cout << request.content_ << std::endl;
+        res = curl_easy_setopt( m_curl, CURLOPT_POSTFIELDS, 
+            request.content_.c_str() );
     }
 
-    res = curl_easy_setopt( m_curl, CURLOPT_WRITEDATA, response );
-    res = curl_easy_setopt( m_curl, CURLOPT_WRITEFUNCTION, WriteCallback );
+    res = curl_easy_setopt( 
+        m_curl, CURLOPT_WRITEDATA, response );
+    res = curl_easy_setopt( 
+        m_curl, CURLOPT_WRITEFUNCTION, WriteCallback );
 
+    res = curl_easy_setopt( m_curl, CURLOPT_URL, request.uri_.c_str() );
+    
     res = curl_easy_perform( m_curl );
 
     if ( chunk )
@@ -71,37 +114,3 @@ util::Status CurlRouter::perform( Request& request, Response* response )
     return network::util::StatusOk();
 }
 
-curl_slist* CurlRouter::setupHeader( Request& request )
-{
-    curl_slist* chunk = nullptr;
-
-    ParameterList options = request.options_;
-    for ( auto& pair : options )
-    {
-        std::string option = pair.first + ": " + pair.second;
-        chunk = curl_slist_append( chunk, option.c_str() );
-    }
-
-    //assert( res == CURLE_OK );
-    return chunk;
-}
-
-std::string CurlRouter::setupUrlWithParameters( Request& request )
-{
-    std::string url = request.uri_;
-
-    int32_t i = 0;
-    ParameterList parameters = request.parameters_;
-    for ( auto& pair : parameters )
-    {
-        url += ( i == 0 ? "?" : "&" );
-        url += pair.first;
-        if( pair.second.length() > 0 )
-        {
-            url += std::string("=") + pair.second;
-        }
-        i++;
-    }
-
-    return url;
-}

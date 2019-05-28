@@ -14,7 +14,7 @@ public:
     virtual ~Router() {}
     virtual void init() = 0;
     virtual void destroy() = 0;
-    virtual util::Status perform( Request& request, Response* response ) = 0;
+    virtual util::Status perform( Request const & request, Response* response ) = 0;
 };
 
 }

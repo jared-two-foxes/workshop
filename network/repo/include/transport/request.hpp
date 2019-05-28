@@ -5,16 +5,28 @@
 #include <vector>
 
 namespace network {
+
 using std::string;
 
 typedef std::pair<string, string > StringPair;
 typedef std::vector<StringPair > ParameterList;
 
+enum class HttpMethod {
+  GET,
+  POST,
+  PUT,
+  HEAD,
+  DELETE, 
+  PATCH,
+  OPTIONS
+};
+
+
 struct Request
 {
+  HttpMethod method_;
   string uri_;
   ParameterList options_;
-  ParameterList parameters_;   //[DEPRECIATED]
   string content_;
 };
 
